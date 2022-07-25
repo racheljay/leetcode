@@ -3,36 +3,30 @@
  * @param {number} target
  * @return {number[]}
  */
-
  function twoSum(nums, target) {
-    const sorted = nums.sort((a, b) => a - b)
-    // const compareIndex = 0
+    const visited = {}
+    const cords = []
     
-    // we only want viable candidates
-    const filtered = []
-    for(let i = 0; i < sorted.length; i++) {
-        if(sorted[i] < target) {
-            filtered.push(sorted[i])
+
+    for(i = 0; i < nums.length; i++) {
+        const item = nums[i]
+        const partner = target - item
+        
+        if (partner in visited) {
+            cords.push(visited[partner])
+            cords.push(i)
+            break
+            
+        } else {
+             visited[item] = i
         }
-    }
-    console.log(filtered)
-
-
-    let search = 0
-    let comparison = 0
-
-    while(i < filtered.length) {
         
     }
-    // for(let i = 0; i < filtered.length; i++) {
-    //     comparison = filtered[i]
-    //     search = target - comparison
-    //     if (filtered.includes(search)) {
-    //         console.log(comparison, search)
-    //     }
-    // }
+
+     
+        console.log(visited)
+        console.log(cords)
+
 };
 
 twoSum([2,7,11,15], 9)
-// [3,2,4], target = 6
-// [3,3], target = 6
