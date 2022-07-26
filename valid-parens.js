@@ -3,39 +3,68 @@
  * @return {boolean}
  */
 
+const braceRelations = {
+    "{": "}",
+    "(": ")",
+    "[": "]"
+}
  var validParens = function(s) {
     
-    let parens = 0
-    let bracket = 0
-    let curly = 0
+    // let parensOpen = false
+    // let bracketOpen = false
+    // let curlyOpen = false
+
+    let lastOpened = []
     
     const isOpen = str => {
         if (str === "(" || str === "{" || str === "[") return true
         return false
     }
+
+    const isClosed = str => {
+        if (str === ")" || str === "}" || str === "]") return false
+    }
     
     for(let i = 0; i < s.length; i++) {
         item = s[i]
         if(item === "(") {
-            parens++
+            parensOpen = true
         } else if (item === "[") {
-            bracket++
+            bracketOpen = true
         } else if(item === "{") {
-            curly++
-        } else if(item === ")"){
-            parens--
+            curlyOpen = true
+        } 
+
+
+        if(item === ")"){
+           if(bracketOpen || curlyOpen) {
+            console.log("() error")
+            return false
+           } else {
+            parensOpen = false
+           }
         } else if(item === "]") {
-            bracket--
+            if(parensOpen || curlyOpen) {
+                console.log("[] error")
+                return false
+            } else {
+                bracketOpen = false
+            }
         } else if(item === "}") {
-            curly--
+            if(parensOpen || bracketOpen) {
+                console.log("{} error")
+                return false
+            } else {
+                curlyOpen = false
+            }
         }
     }
-    
-    if(parens === 0 && bracket === 0 && curly === 0) {
-        return true
-    }
-    return false
+    if(!parensOpen && !bracketOpen && !curlyOpen) return true
+    // if(parens === 0 && bracket === 0 && curly === 0) {
+    //     return true
+    // }
+    // return false
     
 };
 
-validParens("([)]")
+console.log(validParens("( [ ) ]"))
