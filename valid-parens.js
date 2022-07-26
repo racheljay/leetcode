@@ -6,7 +6,10 @@
 const braceRelations = {
     "{": "}",
     "(": ")",
-    "[": "]"
+    "[": "]",
+    "}": "{",
+    ")": "(",
+    "]": "["
 }
  var validParens = function(s) {
     
@@ -14,7 +17,7 @@ const braceRelations = {
     // let bracketOpen = false
     // let curlyOpen = false
 
-    let lastOpened = []
+    let bracketTally = []
     
     const isOpen = str => {
         if (str === "(" || str === "{" || str === "[") return true
@@ -22,49 +25,28 @@ const braceRelations = {
     }
 
     const isClosed = str => {
-        if (str === ")" || str === "}" || str === "]") return false
+        if (str === ")" || str === "}" || str === "]") return true
     }
     
     for(let i = 0; i < s.length; i++) {
         item = s[i]
-        if(item === "(") {
-            parensOpen = true
-        } else if (item === "[") {
-            bracketOpen = true
-        } else if(item === "{") {
-            curlyOpen = true
-        } 
 
+        if (isOpen(item)) {
+            bracketTally.unshift(item)
+        }
 
-        if(item === ")"){
-           if(bracketOpen || curlyOpen) {
-            console.log("() error")
-            return false
-           } else {
-            parensOpen = false
-           }
-        } else if(item === "]") {
-            if(parensOpen || curlyOpen) {
-                console.log("[] error")
+        if(isClosed(item)) {
+            if(bracketTally[0] === braceRelations[item]) {
+                bracketTally.shift()
+            } else if(bracketTally[0] !== braceRelations[item]) {
                 return false
-            } else {
-                bracketOpen = false
-            }
-        } else if(item === "}") {
-            if(parensOpen || bracketOpen) {
-                console.log("{} error")
-                return false
-            } else {
-                curlyOpen = false
             }
         }
     }
-    if(!parensOpen && !bracketOpen && !curlyOpen) return true
-    // if(parens === 0 && bracket === 0 && curly === 0) {
-    //     return true
-    // }
-    // return false
+    if(bracketTally.length > 0) return false
+    console.log(bracketTally)
+    return true
     
 };
 
-console.log(validParens("( [ ) ]"))
+console.log(validParens("([)]"))
