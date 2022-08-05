@@ -10,39 +10,62 @@
  * @param {ListNode} list2
  * @return {ListNode}
  */
-
-const newList = []
  var mergeTwoLists = function(list1, list2) {
-
-    const first = list1
-    const second = list2
-    if(list1.length === 0 && list2.length === 0) return []
-    if(list1.length === 0 && list2.length > 0) return list2
-    if(list2.length === 0 && list1.length > 0) return list1
-
-
-    if(first[0] === second[0]) {
-        newList.push(first[0])
-        newList.push(second[0])
-        first.shift()
-        second.shift()
-        mergeTwoLists(first, second)
+    // edge cases
+    if (list1 === null && list2 === null) return null
+    if (list1 === null && list2 !== null) return list2
+    if (list2 === null && list1 !== null) return list1
+    
+    /* 
+        make sure our first current iterative node is
+        going to be smaller than the head of the one we're comparing to
+    */
+    let iterative, comparative
+    if(list1.val > list2.val) {
+        iterative = list2
+        comparative = list1
     }
-    if(first[0] < second[0]) {
-        newList.push(first[0])
-        first.shift()
-        mergeTwoLists(first, second)
+    if(list1.val <= list2.val) {
+        iterative = list1
+        comparative = list2
     }
-    if(first[0] > second[0]) {
-        newList.push(second[0])
-        second.shift()
-        mergeTwoLists(first, second)
-    }
-
-    console.log(newList)
-    return newList
-
-
+    
+    let current = iterative
+    // let compare = comparative
+    
+    // console.log("next next val", iterative.next.next.val)
+    
+    // while (iterative.next !== null) {
+        let oldNext = iterative.next
+        // console.log(iterative.val, comparative.val)
+        
+        if(iterative.val >= comparative.val) {
+            iterative.next = comparative.val
+            iterative.next.next = oldNext
+            // break
+        }
+        // iterative = iterative.next
+  //  } 
+    console.log(iterative.val)
+    
+    console.log(iterative)
+//     let current = list1
+//     let list2head = list2.val
+//     while (current.next !== null) {
+//         let oldnext = current.next
+//         console.log(current.val)
+        
+//         if(list2head )
+        
+//         current = current.next
+//     }
+//     console.log(current.val)
+    
+//     let data2 = list2
+//     while (data2.next !== null) {
+//         console.log(data2.val)
+//         data2 = data2.next
+//     }
+//     console.log(data2.val)
+    
 };
-
-mergeTwoLists([1, 2, 4], [1, 3, 4])
