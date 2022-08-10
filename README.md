@@ -2,41 +2,45 @@
 
 This is a running collection of all of the grind 75 questions I have answered so far:
 [https://www.techinterviewhandbook.org/grind75](https://www.techinterviewhandbook.org/grind75)
-___
+ <br>
+ <br>
 
 # Week 1
 
 ## Two Sum
-___
-##### *Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.*
 
-##### *You may assume that each input would have exactly one solution, and you may not use the same element twice.*
+##### _Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target._
 
-##### *You can return the answer in any order.*
+##### _You may assume that each input would have exactly one solution, and you may not use the same element twice._
+
+##### _You can return the answer in any order._
 ---
 
  For this solution iterated through the given array and added each iterable to an object that also stored its index. On each turn of the loop I would find a "partner" number by subtracting the current iterable from the target number. I would then check if the current partner was already _inside_ the object as a previous iterable. If it was I could push both that past iterable and the current iterable with their saved indexes, therefore returning the "coordinates" of the two numbers that would add up to the target.
+ <br>
+ <br>
 
  ## Valid Parentheses
- ---
- ##### *Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.*
 
-##### *An input string is valid if:*
+ ##### _Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid._
 
-##### *1. Open brackets must be closed by the same type of brackets.*
-##### *2. Open brackets must be closed in the correct order.*
+##### _An input string is valid if:_
+
+##### _1. Open brackets must be closed by the same type of brackets._
+##### _2. Open brackets must be closed in the correct order._
 ---
 In this solution, I initialized an object setting the relationship between open and closed parenthesis. I also initialized two sets. One for "openers" and one for "closers". I would then loop through the given string. On each step of the loop I would check if the iterable was an "opener", if so I would add it to the beginning of an array to track a record of which type of parens was open.
 I would also check if the iterable was a "closer". If this is true, I would check the beginning of my paren tracking array. If the first item in the array was the complementary opener, it would get shifted off of the array. Once a paren has been closed, there is no more reason to track it. If they were not a match, I return false.
+ <br>
+ <br>
 
 ## Merge Two Sorted Lists
----
 
-##### *You are given the heads of two sorted linked lists list1 and list2*.
+##### _You are given the heads of two sorted linked lists list1 and list2_.
 
-##### *Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.*
+##### _Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists._
 
-##### *Return the head of the merged linked list.*
+##### _Return the head of the merged linked list._
 ---
 This was my very first time using linked lists, so I had to do a lot of studying of the concept to get through this one.
 
@@ -45,15 +49,17 @@ I started with weeding out some of the easy edge cases. I then created a method 
 I then wrote a merge method that would iterate through the second list and implement this, "add in order" method for each value in the second list. 
 
 **I plan to revisit this in the future. I believe that this one, while functional, could be a bit more performant*
+ <br>
+ <br>
 
 ## The Best Time to Buy and Sell Stock
----
 
-##### *You are given an array prices where prices[i] is the price of a given stock on the ith day.s*
 
-##### *You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.*
+##### _You are given an array prices where prices[i] is the price of a given stock on the ith day.s_
 
-##### *Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.*
+##### _You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock._
+
+##### _Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0._
 ---
 In this solution I was challenged by having to continually improve my answer to account for new edge cases for each new test leet code provided. As a result, I feel like I have a very solid performant solution.
 
