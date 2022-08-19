@@ -75,7 +75,6 @@ I would then loop through the array of prices. If the price was less than the cu
 To find the highest number, I would skip over the first index, since the highest could never come first, and then I would check if the current highest was less than or equal to the current price AND if its index was higher than the current lowest number. If these conditions are met, highest gets set to the current price, and a new diff is calculated. If that diff is more than the current profit, profit is reassigned to this new diff.
 
 The returned profit will either equal the best possible max or 0, if the necessary conditions were not met.
-
 <br>
 <br>
 
@@ -88,3 +87,13 @@ This one was easy for me because I'd actually solved it a few times before :)
 I started by doing some basic string sanitization by getting rid of spaces and punctuation, and converting everything to lowercase. However, due to some of the test cases, I had to include a check at this stage to check for strings that were just one piece of punctuation or just a single space.
 
 After I was sure I had an array of only lowercase letters and numbers, I was then able to loop through the array from both ends, and making sure these two indexes matched. If there is a mismatch, the loop ends and returns false. If the beginning index becomes higher than the ending index, I know that I am crossing into characters that have already been checked, and I can safely return true.
+<br>
+<br>
+
+## Invert Binary Tree
+
+##### _Given the root of a binary tree, invert the tree, and return its root._
+---
+This was my first ever time working with binary trees! I found this to be a much smaller learning curve especially after all of the time I spent on linked lists. Before tackling this one I spent a lot of time getting familiar with binary trees as a concept and played around with lots of different methods I could use. Including one that would print all of the nodes in pre order by storing them on a queue. You could say I went wild.
+
+It turned out that after all my messing around with trees, my actual solutions turned out to be a lot simpler that I thought it would be. I started with a null check to make sure the tree root was not empty, and then another one to return the root once the current node lefts and rights all returned null. To do the actually inverting, I saved the left node in a temporary variable, assigned the right to the left, and then gave the right value the stored previous left data. I then did a recursive call of the function for each left and right node throughout the tree, while checking that neither of them were null. Finally at the end I returned the root.
