@@ -97,3 +97,14 @@ After I was sure I had an array of only lowercase letters and numbers, I was the
 This was my first ever time working with binary trees! I found this to be a much smaller learning curve especially after all of the time I spent on linked lists. Before tackling this one I spent a lot of time getting familiar with binary trees as a concept and played around with lots of different methods I could use. Including one that would print all of the nodes in pre order by storing them on a queue. You could say I went wild.
 
 It turned out that after all my messing around with trees, my actual solutions turned out to be a lot simpler that I thought it would be. I started with a null check to make sure the tree root was not empty, and then another one to return the root once the current node lefts and rights all returned null. To do the actually inverting, I saved the left node in a temporary variable, assigned the right to the left, and then gave the right value the stored previous left data. I then did a recursive call of the function for each left and right node throughout the tree, while checking that neither of them were null. Finally at the end I returned the root.
+<br>
+<br>
+
+## Valid Anagram
+
+##### _Given two strings s and t, return true if t is an anagram of s, and false otherwise._
+
+##### _An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once_
+---
+
+This one was pretty easy actually. I started by checking for some edge cases. In order to be tested, strings but be the same length and they are automatically true if they are equal. I then created two objects, one for each string. Next I looped through the two strings and added their letters and the number of times they appear to their relevant object. After that I made a new loop that that will compare the values of the two objects and will return false if there is an inconsistency. If everything goes smoothly, the function returns true.
