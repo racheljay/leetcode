@@ -122,3 +122,22 @@ I had previously learned about binary search, so this question was a nice refres
 For the iterative version, I took an array and a target number as arguments. Then I declared a left variable, which starts at 0 and a right variable that starts at the last index of the array. In a while loop, as long as the left variable is not greater than the right variable, I declare a midpoint variable, which is the left plus the right divided by two. (Since I'm using JS I ended up having to wrap this in a Math.floor to get rid of any decimals).
 
 If the number at the index of mid equals the target number, I return the index number. If the target is lower than the mid number, the right variable becomes mid minus one. If the target is bigger than the mid, left becomes mid + 1. If all these conditions fail and the number is not located, the function returns -1
+<br>
+<br>
+
+## Flood Fill
+##### _An image is represented by an m x n integer grid image where image[i][j] represents the pixel value of the image._
+
+##### _You are also given three integers sr, sc, and color. You should perform a flood fill on the image starting from the pixel image[sr][sc]._
+
+##### _To perform a flood fill, consider the starting pixel, plus any pixels connected 4-directionally to the starting pixel of the same color as the starting pixel, plus any pixels connected 4-directionally to those pixels (also with the same color), and so on. Replace the color of all of the aforementioned pixels with color._
+
+##### _Return the modified image after performing the flood fill._
+---
+Okay this one was super cool. It took me a bit to figure out, but once I did, my heart was _racing_. Which sounds dorky, but is accurate. I found myself remembering back to my bootcamp days as well because I had to make a tic tac toe game which used similar nested array edge case logic.
+
+To be fair I did waste a _little_ bit of time with this one because I made an extra function, "visualizeImage", which did not go into my leetcode solution. It was purely for my own pleasure of seeing the results print out in a neat little box instead of a super boring nested array. Okay on to the actual solution.
+
+For this one I take image, sr, sc, and color, as params. (I would explain what they are but I already left a comment in the actual file so...). I start out with a check to see if the target is already the number we are trying to change it into. If it is, we return the image in its current state. Next are just some peace of mind checks, to make sure that the given coordinates in the image are actually valid. These were actually super useful because they helped me find a bug during one of the test cases I didn't originally test with.
+
+Next comes the definitions for the areas around our target square. Basically they return the value in the specified square, or they return null if that square goes off of the grid. After that I set the current target square value to be the new number that is passed in. AND THEN COMES THE COOL PART. I check the surrounding squares to see if they match the original target value. If they do I make a _recursive_ call and pass in altered coordinates to make the target value for the recursive calls the surrounding square values. And thus the new number or color or whatever spreads like a virus. This was very exciting. 
