@@ -108,3 +108,17 @@ It turned out that after all my messing around with trees, my actual solutions t
 ---
 
 This one was pretty easy actually. I started by checking for some edge cases. In order to be tested, strings but be the same length and they are automatically true if they are equal. I then created two objects, one for each string. Next I looped through the two strings and added their letters and the number of times they appear to their relevant object. After that I made a new loop that that will compare the values of the two objects and will return false if there is an inconsistency. If everything goes smoothly, the function returns true.
+<br>
+<br>
+
+## Binary Search
+
+##### _Given an array of integers nums which is sorted in ascending order, and an integer target, write a function to search target in nums. If target exists, then return its index. Otherwise, return -1._
+
+##### _You must write an algorithm with O(log n) runtime complexity._
+---
+I had previously learned about binary search, so this question was a nice refresher. In doing further research to solve this, I learned that there are two main solutions, an iterative one and a recursive one. I chose to implement the iterative one, because that made my brain hurt less, but I am interested to test both in order to find which one is faster.
+
+For the iterative version, I took an array and a target number as arguments. Then I declared a left variable, which starts at 0 and a right variable that starts at the last index of the array. In a while loop, as long as the left variable is not greater than the right variable, I declare a midpoint variable, which is the left plus the right divided by two. (Since I'm using JS I ended up having to wrap this in a Math.floor to get rid of any decimals).
+
+If the number at the index of mid equals the target number, I return the index number. If the target is lower than the mid number, the right variable becomes mid minus one. If the target is bigger than the mid, left becomes mid + 1. If all these conditions fail and the number is not located, the function returns -1
