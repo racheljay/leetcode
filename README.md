@@ -140,4 +140,18 @@ To be fair I did waste a _little_ bit of time with this one because I made an ex
 
 For this one I take image, sr, sc, and color, as params. (I would explain what they are but I already left a comment in the actual file so...). I start out with a check to see if the target is already the number we are trying to change it into. If it is, we return the image in its current state. Next are just some peace of mind checks, to make sure that the given coordinates in the image are actually valid. These were actually super useful because they helped me find a bug during one of the test cases I didn't originally test with.
 
-Next comes the definitions for the areas around our target square. Basically they return the value in the specified square, or they return null if that square goes off of the grid. After that I set the current target square value to be the new number that is passed in. AND THEN COMES THE COOL PART. I check the surrounding squares to see if they match the original target value. If they do I make a _recursive_ call and pass in altered coordinates to make the target value for the recursive calls the surrounding square values. And thus the new number or color or whatever spreads like a virus. This was very exciting. 
+Next comes the definitions for the areas around our target square. Basically they return the value in the specified square, or they return null if that square goes off of the grid. After that I set the current target square value to be the new number that is passed in. AND THEN COMES THE COOL PART. I check the surrounding squares to see if they match the original target value. If they do I make a _recursive_ call and pass in altered coordinates to make the target value for the recursive calls the surrounding square values. And thus the new number or color or whatever spreads like a virus. This was very exciting.
+<br>
+<br>
+
+## Maximum Sub Array
+
+##### _Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum._
+
+##### _A subarray is a contiguous part of an array._
+---
+I tried two different approaches to this one with the first approach ultimately not working. The first attempt involved chopping the head and tail off the array and then finding the sum of it in a while loop every time it changed, and storing this in a results array. It kind of worked but not really. I kept running into weird edge cases once the array started to get smaller and it was very slow being O(n<sup>2</sup>).
+
+For my final solution I still kept my solutions array but implemented it slightly differently. Instead of doing an expensive iterative math operation for each iteration, I started by saving the first index of the array in my results array. I then was able to loop through the rest of the array only once. Each time I compared the new number to the previous result. If the current number is higher than the most recent result plus itself, it gets added to the result array. If it is not bigger than the previous result, it adds itself with the previous result and that gets added to the result array. Then I run a separate loop through the result array to find the highest number solution.
+
+This one could probably be fine tuned a bit down the road, but I am happy with the relatively succinct I was able to come up with. I'm just happy I was able to get it less than O(n). 
