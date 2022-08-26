@@ -155,3 +155,15 @@ I tried two different approaches to this one with the first approach ultimately 
 For my final solution I still kept my solutions array but implemented it slightly differently. Instead of doing an expensive iterative math operation for each iteration, I started by saving the first index of the array in my results array. I then was able to loop through the rest of the array only once. Each time I compared the new number to the previous result. If the current number is higher than the most recent result plus itself, it gets added to the result array. If it is not bigger than the previous result, it adds itself with the previous result and that gets added to the result array. Then I run a separate loop through the result array to find the highest number solution.
 
 This one could probably be fine tuned a bit down the road, but I am happy with the relatively succinct I was able to come up with. I'm just happy I was able to get it less than O(n). 
+<br>
+<br>
+
+## Lowest Common Ancestor of a Binary Search Tree
+##### _Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in the BST._
+##### _According to the [definition of LCA on Wikipedia:](https://en.wikipedia.org/wiki/Lowest_common_ancestor) “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”_
+---
+In my lowest common ancestor function, I accept the root node, and p and q, which represent the two nodes I am finding the ancestor for.
+
+I started by writing a helper function called "savePath". Save path takes a value and loops through the tree path, saving visited nodes to a set along the way, returning the set at the end. I call this function twice, once for p and once for q so that I have a set for each path.
+
+Then I compare the two sets and return a new set that contains any shared nodes. This new set then gets converted to an array and I return the last item in the array, which should be the last added common node.
