@@ -167,3 +167,14 @@ In my lowest common ancestor function, I accept the root node, and p and q, whic
 I started by writing a helper function called "savePath". Save path takes a value and loops through the tree path, saving visited nodes to a set along the way, returning the set at the end. I call this function twice, once for p and once for q so that I have a set for each path.
 
 Then I compare the two sets and return a new set that contains any shared nodes. This new set then gets converted to an array and I return the last item in the array, which should be the last added common node.
+<br>
+<br>
+
+## Linked List Cycle
+##### _Given head, the head of a linked list, determine if the linked list has a cycle in it._
+
+##### _There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter._
+
+##### _Return true if there is a cycle in the linked list. Otherwise, return false._
+---
+This one was fairly easy to implement. I start by catching the edge case of returning false if the linked list is empty. I then create a set to store visited nodes in the linked list. In a while loop, I check if a node is _not_ in the set. If it is not, it gets added, and the loop iterates to the next node. If the next node is null it breaks the loop and returns false. Outside the loop I check if the set already has one of the previously iterated nodes. If it does, this proves the cycle and I return true.
