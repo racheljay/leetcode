@@ -170,6 +170,17 @@ Then I compare the two sets and return a new set that contains any shared nodes.
 <br>
 <br>
 
+## Balanced Binary Tree
+##### _Given a binary tree, determine if it is height-balanced._
+
+##### _For this problem, a height-balanced binary tree is defined as:_
+
+##### _a binary tree in which the left and right subtrees of every node differ in height by no more than 1._
+---
+I will come back to this one once I have a bit more experience with binary trees. I got tired of beating my head against a wall with this one.
+<br>
+<br>
+
 ## Linked List Cycle
 ##### _Given head, the head of a linked list, determine if the linked list has a cycle in it._
 
@@ -178,3 +189,24 @@ Then I compare the two sets and return a new set that contains any shared nodes.
 ##### _Return true if there is a cycle in the linked list. Otherwise, return false._
 ---
 This one was fairly easy to implement. I start by catching the edge case of returning false if the linked list is empty. I then create a set to store visited nodes in the linked list. In a while loop, I check if a node is _not_ in the set. If it is not, it gets added, and the loop iterates to the next node. If the next node is null it breaks the loop and returns false. Outside the loop I check if the set already has one of the previously iterated nodes. If it does, this proves the cycle and I return true.
+
+<br>
+
+____
+
+<br>
+
+
+# Week 2
+
+## First Bad Version
+
+##### _You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad._
+
+##### _Suppose you have n versions [1, 2, ..., n] and you want to find out the first bad one, which causes all the following ones to be bad._
+
+##### _You are given an API bool isBadVersion(version) which returns whether version is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API._
+---
+This one tripped me up until I realized that this was a use case for binary search. In my first version of the solution, I generated an array of all of the possible previous versions so that I could perform the search on the array. This ended up being kind of silly, because making the array took lots of time and was able to do the binary search math on the number itself rather than a redundant array. This was my first impulse, because I have only ever done binary search on ordered lists before. It was easy to remove the need for the array from my logic, by simply replacing the last index spot of my array with the actual number I'm checking.
+
+In the return function, I start by naming two variables: left and right. Left starts as 0 and right starts as the number being passed in (n). Next I used a while loop to run on the condition that the left number is less than or equal to the right number. Inside the loop, mid is defined as being whatever the left plus the right numbers are divided by two. I also define a variable that will show what the immediate previous version to the current version is. This is necessary because we want the _first_ bad version, so we need to check that the previous version is not also a bad version. I then do some if checks. The first check if we currently have the condition we want, if true, it returns the current mid. Next I check if the current version number is not a bad version. If the current mid is false we know that the first bad one must be a higher number. If the version is too low, left becomes mid + 1. Finally we check if the mid is a bad version, but the previous one is also a bad version, in which case we take the right and it becomes mid - 1.
