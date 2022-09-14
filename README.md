@@ -5,6 +5,28 @@ This is a running collection of all of the grind 75 questions I have answered so
  <br>
  <br>
 
+ # Contents:
+ Week 1
+ 1. [Two Sum](#two-sum)
+ 1. [Valid Parentheses](#valid-parentheses)
+ 1. [Merge Two Sorted Lists](#merge-two-sorted-lists)
+ 1. [The Best Time to Buy and Sell Stock](#the-best-time-to-buy-and-sell-stock)
+ 1. [Valid Palindrome](#valid-palindrome)
+ 1. [Invert Binary Tree](#invert-binary-tree)
+ 1. [Valid Anagram](#valid-anagram)
+ 1. [Binary Search](#binary-search)
+ 1. [Flood Fill](#flood-fill)
+ 1. [Maximum Sub Array](#maximum-sub-array)
+ 1. [Lowest Common Ancestor of a Binary Search Tree](#lowest-common-ancestor-of-a-binary-search-tree)
+ 1. [Balanced Binary Tree](#balanced-binary-tree)
+ 1. [Linked List Cycle](#linked-list-cycle)
+
+ Week 2
+ 1. [First Bad Version](#first-bad-version)
+ 1. [Ransome Note](#ransom-note)
+ 1. 
+
+
 # Week 1
 
 ## Two Sum
@@ -210,3 +232,43 @@ ____
 This one tripped me up until I realized that this was a use case for binary search. In my first version of the solution, I generated an array of all of the possible previous versions so that I could perform the search on the array. This ended up being kind of silly, because making the array took lots of time and was able to do the binary search math on the number itself rather than a redundant array. This was my first impulse, because I have only ever done binary search on ordered lists before. It was easy to remove the need for the array from my logic, by simply replacing the last index spot of my array with the actual number I'm checking.
 
 In the return function, I start by naming two variables: left and right. Left starts as 0 and right starts as the number being passed in (n). Next I used a while loop to run on the condition that the left number is less than or equal to the right number. Inside the loop, mid is defined as being whatever the left plus the right numbers are divided by two. I also define a variable that will show what the immediate previous version to the current version is. This is necessary because we want the _first_ bad version, so we need to check that the previous version is not also a bad version. I then do some if checks. The first check if we currently have the condition we want, if true, it returns the current mid. Next I check if the current version number is not a bad version. If the current mid is false we know that the first bad one must be a higher number. If the version is too low, left becomes mid + 1. Finally we check if the mid is a bad version, but the previous one is also a bad version, in which case we take the right and it becomes mid - 1.
+<br>
+<br>
+
+## Ransom Note
+
+##### _Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise._
+
+##### _Each letter in magazine can only be used once in ransomNote._
+---
+For this one I started off with an edge case covering whether the length of the ransom note was longer than the length of the magazine. If this is true, I return false, because there are not enough letters to complete the note. Next I declare two objects, one for the magazine and one for the letters needed for the note, and a count variable. I then loop through the two strings and fill the objects with the letters that appear in each and how many times that letter appears.
+
+In another loop I go through the keys of the letters needed. If a letter is in the cut up magazine, I also return false if it does not appear in the correct quantity. If the letter is not in the magazine, I return false. If the loop completes without failing, I return true.
+<br>
+<br>
+
+## Climbing Stairs
+
+##### _You are climbing a staircase. It takes n steps to reach the top._
+
+##### _Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?_
+
+This was one that I struggled with, but I feel like I came out the other side learning a lot about memoization. It was a bit tricky getting my head around all of the recursion in this problem but I think I was able to come up with solution that makes sense to me.
+
+I did this in two stages. The first way being a brute force approach. I made a function that accepted two parameters: current step and last step. I then made some statements that would break the recursion. If the current step is greater than the current step, we know that the way we got to this number is not viable, and therefore we can return 0. If the current step is equal to the last step, we know that the way we got to this answer is valid, and we can return 1. I then recursed the function by returning my number of stairs function with current stair + 1 and adding that to another function call, passing in our current number + 2. This worked but was very inefficient so I made minor changes that greatly improved it with memoization.
+
+After the two checks checking if our current step is greater than or equal, I added another check, looking if the current number is indexed in our memo array. If it is, we know we already have a solution for this one and we can return it. Then, instead of returning the product of two function calls, I assign the two recursive function calls to the index of our current step in the memo array. I can then return the index of our current step in the memo array.
+
+This one threw me for a loop and it took me awhile to understand. I spent a long time drawing out diagrams, which took me further away from the solution, until I finally did a lot of studying on memoization and dynamic programming. This one was a bit frustrating because I didn't arrive at it organically. I doubt I would have ever come up with this on my own, but I guess not a lot of other people would either, given the number of tutorials there are about this on the internet.
+<br>
+<br>
+
+## Longest Palindrome
+
+##### _Given a string s which consists of lowercase or uppercase letters, return the length of the longest palindrome that can be built with those letters._
+
+##### _Letters are case sensitive, for example, "Aa" is not considered a palindrome here._
+
+I solved this one using a method I've used several times so far which includes converting a string to an objet that includes letters and how many times they appear in the string.
+
+After I had an object tot work with, I looped through the keys of the object and determined if it was even or odd. If it was even, the total number of this letter could go towards the ultimate length total. If the number is odd, I allow the first one to be added, but after this happens, a boolean gets changed that will change the logic for the remaining odds. Any odds after the first one will have their total added to the ultimate length while subtracting one from each of them, so that they can be evenly placed around an odd in the center.
