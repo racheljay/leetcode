@@ -24,7 +24,8 @@ This is a running collection of all of the grind 75 questions I have answered so
  Week 2
  1. [First Bad Version](#first-bad-version)
  1. [Ransome Note](#ransom-note)
- 1. 
+ 1. [Climbing Stairs](#climbing-stairs)
+ 1. [Longest Palindrome](#longest-palindrome)
 
 
 # Week 1
