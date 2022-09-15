@@ -273,3 +273,13 @@ This one threw me for a loop and it took me awhile to understand. I spent a long
 I solved this one using a method I've used several times so far which includes converting a string to an objet that includes letters and how many times they appear in the string.
 
 After I had an object tot work with, I looped through the keys of the object and determined if it was even or odd. If it was even, the total number of this letter could go towards the ultimate length total. If the number is odd, I allow the first one to be added, but after this happens, a boolean gets changed that will change the logic for the remaining odds. Any odds after the first one will have their total added to the ultimate length while subtracting one from each of them, so that they can be evenly placed around an odd in the center.
+<br>
+<br>
+
+## Reverse Linked List
+
+##### _Given the head of a singly linked list, reverse the list, and return the reversed list._
+
+This one was pretty straight forward, and has shown me that I am becoming more and more comfortable with using linked lists.
+
+I start by declaring a variable for the previous node that starts as null, and a variable for the current node, which starts as the head node. While the current node is not null, I have a new variable for the node after the current node, which starts as the current next. (This is important to save this link in the list, else it could be lost while reassigning list relationships.) Then I assign the current next to be what is stored in previous. Then a new previous gets set as the current, and a new current gets set as the node we saved in after. This loops until the whole list has been reversed. Finally I return the previous node.
