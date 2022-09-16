@@ -26,6 +26,8 @@ This is a running collection of all of the grind 75 questions I have answered so
  1. [Ransome Note](#ransom-note)
  1. [Climbing Stairs](#climbing-stairs)
  1. [Longest Palindrome](#longest-palindrome)
+ 1. [Reverse Linked List](#reverse-linked-list)
+ 1. [Majority Element](#majority-element)
 
 
 # Week 1
@@ -283,3 +285,17 @@ After I had an object tot work with, I looped through the keys of the object and
 This one was pretty straight forward, and has shown me that I am becoming more and more comfortable with using linked lists.
 
 I start by declaring a variable for the previous node that starts as null, and a variable for the current node, which starts as the head node. While the current node is not null, I have a new variable for the node after the current node, which starts as the current next. (This is important to save this link in the list, else it could be lost while reassigning list relationships.) Then I assign the current next to be what is stored in previous. Then a new previous gets set as the current, and a new current gets set as the node we saved in after. This loops until the whole list has been reversed. Finally I return the previous node.
+<br>
+<br>
+
+## Majority Element
+
+##### _Given an array nums of size n, return the majority element._
+
+##### _The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array._
+
+I feel like I've done this problem so many times now I can do it in my sleep, which is a good thing.
+
+I make an empty object to capture numbers and how often they appear. I also set a highest frequency variable and a numString variable. I loop through the string. If the number is already in the object, I add one to the frequency, if it's not in the object, I add it.
+
+While this is happening I check if the current number has a frequency higher than the number being stored in the appropriate variable. If it is, it becomes the new highest. I also update numString to record what that number is. Finally I return the numString value, parsed, so that it returns a number.
