@@ -28,6 +28,7 @@ This is a running collection of all of the grind 75 questions I have answered so
  1. [Longest Palindrome](#longest-palindrome)
  1. [Reverse Linked List](#reverse-linked-list)
  1. [Majority Element](#majority-element)
+ 1. [Add Binary](#add-binary)
 
 
 # Week 1
@@ -299,3 +300,13 @@ I feel like I've done this problem so many times now I can do it in my sleep, wh
 I make an empty object to capture numbers and how often they appear. I also set a highest frequency variable and a numString variable. I loop through the string. If the number is already in the object, I add one to the frequency, if it's not in the object, I add it.
 
 While this is happening I check if the current number has a frequency higher than the number being stored in the appropriate variable. If it is, it becomes the new highest. I also update numString to record what that number is. Finally I return the numString value, parsed, so that it returns a number.
+<br>
+<br>
+
+## Add Binary
+
+##### _Given two binary strings a and b, return their sum as a binary string._
+
+This one was super fun. Before this, I had no idea how binary numbers worked, so that was fun to learn. I also knew that I didn't want the hassle of converting binaries to ints and then back again, so I came up with the following solution:
+
+I start by figuring out which of the two strings is the longest, and then I loop over that string, starting at the end. In the loop I do some basic math to find out what each digit of the two binary numbers comes out to be. If the two digits and any remainder equal 3, we add 1 to the solution and have a remainder of 1. If they equal 2 we have add a 0 to the solution and have a remainder of 1. If they equal 1, we add 1 to the solution and we have no remainder. 0 means we add 0 and we have no remainder. Unfortunately some logic is repeated for this part because I have separate statements depending on if we have run out of numbers in the shorter string or not. There's probably room for refactoring there. I then decrement the short string and long string indexes. After the loop completes I check and see if there is a remainder left over. If there is, I add that to the solution. 
