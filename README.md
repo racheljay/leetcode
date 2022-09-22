@@ -203,7 +203,21 @@ Then I compare the two sets and return a new set that contains any shared nodes.
 
 ##### _a binary tree in which the left and right subtrees of every node differ in height by no more than 1._
 ---
-I will come back to this one once I have a bit more experience with binary trees. I got tired of beating my head against a wall with this one.
+This one has probably taken me the most amount of time to solve. I have two solutions for this one that I would like to hold on to in case they come in handy in the future.
+
+For the first solution, there are two simple functions. One function simply recursively finds the height of a tree by returning -1 if we are on a null node, or adding 1 to the existing maximum tree height, as we bubble back up from the bottom.
+
+The second function (isBalanced) returns true if our node is null. At the end I return if the height difference between the left and right tree is less than two AND call isBalanced recursively on the left and right sides. Our return resolves to either true or false depending if all the requirements are met.
+
+Second solution:
+
+The next solution is a little harder to grasp. Most of the actual logic is handled in a helper function, which is returned by a wrapper function. A big mental block for me in the solving of this problem, is that I needed to be able to return two things. A height and a boolean that determines wether a tree is balanced or not. One solution for this is to simply return the results in an array.
+
+If the node is null, I return an array with true and -1. A null node is a balanced node. Next is I do a recursive call of the helper function and assign that to a variable. Because the data we need is in an array, I break it out into two variables to make it a bit more readable for myself. If the left side is not balanced, we return an array with false and 0. We do the same thing, getting data from the right side by recursively calling the balance helper until it finds one that is false.
+
+Assuming on our given node we make it past our two fail checks for the left and right sides, we return an array that will give the boolean result of the current left and right height difference being less than two. The second spot in the array will return the current height, by finding the max of the left and right heights and adding one. If we make it all the way through the tree with no failures, we know it is balanced.
+
+This solution is more efficient than the previous one because we are only calling our function on each node once, giving it an efficiency of O(n).
 <br>
 <br>
 
