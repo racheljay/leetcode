@@ -324,3 +324,15 @@ While this is happening I check if the current number has a frequency higher tha
 This one was super fun. Before this, I had no idea how binary numbers worked, so that was fun to learn. I also knew that I didn't want the hassle of converting binaries to ints and then back again, so I came up with the following solution:
 
 I start by figuring out which of the two strings is the longest, and then I loop over that string, starting at the end. In the loop I do some basic math to find out what each digit of the two binary numbers comes out to be. If the two digits and any remainder equal 3, we add 1 to the solution and have a remainder of 1. If they equal 2 we have add a 0 to the solution and have a remainder of 1. If they equal 1, we add 1 to the solution and we have no remainder. 0 means we add 0 and we have no remainder. Unfortunately some logic is repeated for this part because I have separate statements depending on if we have run out of numbers in the shorter string or not. There's probably room for refactoring there. I then decrement the short string and long string indexes. After the loop completes I check and see if there is a remainder left over. If there is, I add that to the solution. 
+
+## Diameter of Binary Tree
+
+##### _Given the root of a binary tree, return the length of the diameter of the tree._
+
+##### _The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root._
+
+##### _The length of a path between two nodes is represented by the number of edges between them._
+
+The key to this one for me was keeping track of the root node for which ever path is the longest. I first initialize a diameter variable outside of my recursive function. Inside the function, I have a base case to return 0 if the current node is null. I then save the left and right paths in variables which are recursive calls to the function for the left and right sides. I then update diameter by finding the max between the old diameter and the current left path plus the right path. Finally the function returns the max between the left and right path plus one, so that we can add adjusted heights to the recursions.
+
+Outside of the recursing function, I call the function and pass in the root of the tree. I then return the diameter, which has been updated by the recursive function.
