@@ -29,6 +29,7 @@ This is a running collection of all of the grind 75 questions I have answered so
  1. [Reverse Linked List](#reverse-linked-list)
  1. [Majority Element](#majority-element)
  1. [Add Binary](#add-binary)
+ 1. [Middle of a Linked List](#middle-of-the-linked-list)
 
 
 # Week 1
@@ -336,3 +337,17 @@ I start by figuring out which of the two strings is the longest, and then I loop
 The key to this one for me was keeping track of the root node for which ever path is the longest. I first initialize a diameter variable outside of my recursive function. Inside the function, I have a base case to return 0 if the current node is null. I then save the left and right paths in variables which are recursive calls to the function for the left and right sides. I then update diameter by finding the max between the old diameter and the current left path plus the right path. Finally the function returns the max between the left and right path plus one, so that we can add adjusted heights to the recursions.
 
 Outside of the recursing function, I call the function and pass in the root of the tree. I then return the diameter, which has been updated by the recursive function.
+<br>
+<br>
+
+## Middle of the Linked List
+
+##### _Given the head of a singly linked list, return the middle node of the linked list._
+
+##### _If there are two middle nodes, return the second middle node._
+
+I was really pleased with my solution for this one until I saw the optimized solution for this one and it blew my mind. So I am including both of them.
+
+For the first solution I declare an index variable that starts at 1 and an empty object to store nodes as we arrive at them. I then loop through the linked list, and store nodes along with the incremented index as the key. Finally I can return the correct node from the object by dividing the final index by two.
+
+The second solution saves space by not bothering to store any of the nodes. It traverses through the linked list with a slow pointer and a fast pointer. While the slow pointer passes through each individual node, the fast pointer skips a node each time, therefore moving at double speed. By the time the fast pointer makes it to the end we can assume that the slow pointer will be at the halfway point, and at that point we can just return that.
