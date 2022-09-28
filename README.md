@@ -30,6 +30,7 @@ This is a running collection of all of the grind 75 questions I have answered so
  1. [Majority Element](#majority-element)
  1. [Add Binary](#add-binary)
  1. [Middle of a Linked List](#middle-of-the-linked-list)
+ 1. [Max Depth of a Binary Tree](#maximum-depth-of-binary-tree)
 
 
 # Week 1
@@ -351,3 +352,15 @@ I was really pleased with my solution for this one until I saw the optimized sol
 For the first solution I declare an index variable that starts at 1 and an empty object to store nodes as we arrive at them. I then loop through the linked list, and store nodes along with the incremented index as the key. Finally I can return the correct node from the object by dividing the final index by two.
 
 The second solution saves space by not bothering to store any of the nodes. It traverses through the linked list with a slow pointer and a fast pointer. While the slow pointer passes through each individual node, the fast pointer skips a node each time, therefore moving at double speed. By the time the fast pointer makes it to the end we can assume that the slow pointer will be at the halfway point, and at that point we can just return that.
+<br>
+<br>
+
+## Maximum Depth of Binary Tree
+
+##### _Given the root of a binary tree, return its maximum depth._
+
+##### _A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node._
+
+Honestly I was really surprised by the placement of this one on the list. I've used this within several other binary tree problems, so it was weird to see it so far down the list.
+
+This one is pretty simple. I have a check in place to return zero if we have reached a null node. I then return the max heights of the left and right trees by finding the max between recursing the left and right sides and adding one each time the recursive function is called.
