@@ -178,11 +178,16 @@ Next comes the definitions for the areas around our target square. Basically the
 
 ##### _A subarray is a contiguous part of an array._
 ---
+
+*Edit:* I have now refactored this one and it is slightly more efficient. I keep track of a current total and an overall maximum total. The current total I'm tracking starts as the first index of the array. I then loop through the array starting at index 1. If the number at the current index is more than the current total plus that index number, the curren total gets updated with the previous total plus the new num. I also check if this is bigger than the previous overall max total. If the current num is not bigger than the num plus the current total, the current total becomes num plus the current total, updating the overall max like for the other condition. I then return the max total.
+
+Old solution:
+
 I tried two different approaches to this one with the first approach ultimately not working. The first attempt involved chopping the head and tail off the array and then finding the sum of it in a while loop every time it changed, and storing this in a results array. It kind of worked but not really. I kept running into weird edge cases once the array started to get smaller and it was very slow being O(n<sup>2</sup>).
 
 For my final solution I still kept my solutions array but implemented it slightly differently. Instead of doing an expensive iterative math operation for each iteration, I started by saving the first index of the array in my results array. I then was able to loop through the rest of the array only once. Each time I compared the new number to the previous result. If the current number is higher than the most recent result plus itself, it gets added to the result array. If it is not bigger than the previous result, it adds itself with the previous result and that gets added to the result array. Then I run a separate loop through the result array to find the highest number solution.
 
-This one could probably be fine tuned a bit down the road, but I am happy with the relatively succinct I was able to come up with. I'm just happy I was able to get it less than O(n). 
+This one could probably be fine tuned a bit down the road, but I am happy with the relatively succinct I was able to come up with. I'm just happy I was able to get it less than O(n<sup>2</sup>). 
 <br>
 <br>
 
