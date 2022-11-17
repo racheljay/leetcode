@@ -14,6 +14,13 @@ var encode = function (strs) {
     return array.join("")
 };
 
+const isIntString = char => {
+    if (!char) return false
+    if (char.charCodeAt(0) >= 48 && char.charCodeAt(0) <= 57) {
+        return true
+    }
+    return false
+}
 /**
  * Decodes a single string to a list of strings.
  *
@@ -22,39 +29,27 @@ var encode = function (strs) {
  */
 var decode = function (s) {
     const solution = []
+    let i = 0
+    let numString = ""
 
-    const isIntString = char => {
-        if (!char) return false
-        if (char.charCodeAt(0) >= 48 && char.charCodeAt(0) <= 57) {
-            return true
+    while (i < s.length) {
+        if (isIntString(s[i])) {
+            numString = numString + s[i]
+            i++
         }
-        return false
-    }
-
-    let num = ""
-    for (let i = 0; i < s.length; i++) {
-        const char = s[i]
-        if ((isIntString(char) && s[i + 1] === "&") ) {
-            num = num + char
-            console.log({ num }, parseInt(num))
-            continue
-        } else if (!isIntString(char) && char !== "&" && num !== "") {
-            num = ""
-        } else if (char === "&" && isIntString(s[i - 1])) {
-            if (s[i - 1] === "0") {
-                solution.push("")
-                num = ""
-                continue
+        if (s[i] === "&" && numString !== "") {
+            const wordLength = parseInt(numString)
+            const word = s.slice(i + 1, wordLength + i + 1)
+            solution.push(word)
+            numString = ""
+            if(i + wordLength + 1 < s.length) {
+                i = i + wordLength + 1
             } else {
-                console.log("ampersand", num)
-                const word = s.slice((i + 1), (i + parseInt(num) + 1))
-                console.log({ word })
-                solution.push(word)
-                num = ""
+                break
             }
         }
     }
-    console.log({ solution })
+    console.log({solution})
     return solution
 }
 
@@ -73,7 +68,7 @@ const array3 = ["q?6?^7z5*", "2_`Gw+", "_D4-.3", "-z5PU2="]
 const array4 = ["", ""]
 const array5 = ["!=ts-aNs", "T!904l", "", "*j~{J.#X"]
 const array6 = ["57k:p`lJ", "rDJc&IT", "TuWC"]
-const array7 = ["`Ejy7","mjax","Z vcCvs"]
+const array7 = ["`Ejy7", "mjax", "Z vcCvs"]
 
 const encoded = encode(array7)
 decode(encoded)
