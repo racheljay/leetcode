@@ -14,7 +14,7 @@ var minWindow = function (s, t) {
     const mustHaveVariety = Object.keys(mustHaves).length
 
     const current = {}
-    let variety = Number.MAX_SAFE_INTEGER
+    let numOfLetters = 0
     let start = 0
     let end = 0
     let minLength = Number.MAX_SAFE_INTEGER
@@ -23,19 +23,31 @@ var minWindow = function (s, t) {
         const letter = s[end]
 
         if (letter in mustHaves) {
+            console.log({letter})
             if (letter in current === false) {
                 current[letter] = 0
             }
             if (current[letter] === 0) {
-                variety++
+                numOfLetters++
             }
             current[letter]++
         }
 
-        if(variety === mustHaveVariety) {
+        // TODO figure out how to shrink the window in a reasonable way while correct amount of letters are present
+        // while(numOfLetters > mustHaveVariety) {
+        //     if()
+        // }
+
+        if(numOfLetters === mustHaveVariety) {
             minLength = Math.min(minLength, (end - start + 1))
             console.log({start}, {end})
-            break
+            console.log({numOfLetters}, {minLength})
+            // break
+            if(s[start] in mustHaves) {
+                current[s[start]]--
+                start++
+                numOfLetters--
+            }
         }
 
         end++
