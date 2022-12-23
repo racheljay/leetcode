@@ -16,7 +16,6 @@ var minWindow = function (s, t) {
         }
         mustHaves[t[i]]++
     }
-    const mustHaveVariety = Object.keys(mustHaves).length
 
     const current = {}
     let numOfLetters = 0
@@ -28,44 +27,39 @@ var minWindow = function (s, t) {
         const letter = s[end]
 
         if (letter in mustHaves) {
-            console.log({ letter })
             if (letter in current === false) {
                 current[letter] = 0
-            }
-            if (current[letter] === 0) {
+            } 
+            current[letter]++
+            if (current[letter] <= mustHaves[letter]) {
                 numOfLetters++
             }
-            current[letter]++
         }
 
-        while (numOfLetters >= mustHaveVariety) {
-            if (numOfLetters === mustHaveVariety) {
+        while (numOfLetters >= t.length) {
+            if (numOfLetters === t.length) {
 
                 if (end - start + 1 < minLength[0]) {
                     minLength = [end - start + 1, start, end]
                 }
 
-                console.log({ start }, s[start], { end }, s[end])
-                console.log({ numOfLetters }, { minLength })
-
             }
-            if (s[start] in mustHaves) {
-                if (current[s[start]] > 0) {
-                    current[s[start]]--
-                }
-                if (current[s[start]] <= 0)
+                if (s[start] in mustHaves) {
+                    if (current[s[start]] > 0) {
+                        current[s[start]]--
+                    }
+                    if(current[s[start]] < mustHaves[s[start]])
                     numOfLetters--
-            }
-            start++
+                }
+                start++
+        }
+        if(start === 0 && end === s.length - 1 && numOfLetters < t.length) {
+            console.log("the end and no dice")
+            return ""
         }
         end++
     }
 
-    console.log(current)
-    if (Object.keys(current).length === 0) {
-        console.log("no match")
-        return ""
-    }
     const minString = s.slice(minLength[1], minLength[2] + 1)
     console.log("SOLUTION:", { minString })
     return minString
@@ -75,24 +69,34 @@ var minWindow = function (s, t) {
 const s1 = "ADOBECODEBANC"
 const t1 = "ABC"
 
-// minWindow(s1, t1)
+minWindow(s1, t1)
 
 const s2 = "a"
 const t2 = "a"
 
-// minWindow(s2, t2)
+minWindow(s2, t2)
 
 const s3 = "a"
 const t3 = "aa"
 
-// minWindow(s3, t3)
+minWindow(s3, t3)
 
 const s4 = "a"
 const t4 = "b"
 
-// minWindow(s4, t4)
+minWindow(s4, t4)
 
 const s5 = "aa"
 const t5 = "aa"
 
 minWindow(s5, t5)
+
+const s6 = "bba"
+const t6 = "ab"
+
+minWindow(s6, t6)
+
+const s7 = "babb"
+const t7 = "baba"
+
+minWindow(s7, t7)
