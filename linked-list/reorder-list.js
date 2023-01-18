@@ -25,6 +25,7 @@ const list = new ListNode(1)
 list.next = new ListNode(2)
 list.next.next = new ListNode(3)
 list.next.next.next = new ListNode(4)
+// list.next.next.next.next = new ListNode(5)
 
 // console.log(list)
 
@@ -42,11 +43,10 @@ const printList = ll => {
     console.log(nodeArr)
 }
 
-
-const reverseList = ll => {
-    let current = ll
+const reverseList = node => {
+    let current = node
     let previous = null
-    let after = ll.next
+    let after = node.next
 
     while (after !== null) {
         current.next = previous
@@ -56,22 +56,39 @@ const reverseList = ll => {
     }
     current.next = previous
     return current
-
 }
 
-// const reversed = reverseList(list)
-// printList(reversed)
+const splitList = ll => {
+    let fast = ll
+    let slow = ll
+
+    while (fast.next !== null && fast.next.next !== null) {
+        slow = slow.next
+            fast = fast.next.next
+    }
+    console.log(slow.val)
+
+    let oldNext = slow.next
+    slow.next = null
+    console.log(oldNext)
+    console.log(ll)
+    return reverseList(oldNext)
+}
+
+printList(splitList(list))
+printList(list)
+
 
 /* end playground */
 
 var reorderList = function (head) {
     let current = head
     // const reversed = reverseList(current)
-    printList(current)
+    // printList(current)
 
-// let oldNext = current.next
-// current.next = e
-    
+    // let oldNext = current.next
+    // current.next = e
+
 
 };
 
