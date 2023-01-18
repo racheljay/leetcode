@@ -17,17 +17,13 @@ function ListNode(val, next) {
     this.next = (next === undefined ? null : next)
 }
 
-/********************************************* */
-
-/* Playground to get back on my feet*/
-
 const list = new ListNode(1)
 list.next = new ListNode(2)
 list.next.next = new ListNode(3)
 list.next.next.next = new ListNode(4)
-// list.next.next.next.next = new ListNode(5)
+list.next.next.next.next = new ListNode(5)
 
-// console.log(list)
+// helper function to see list
 
 const printList = ll => {
     let node = ll
@@ -42,6 +38,8 @@ const printList = ll => {
     }
     console.log(nodeArr)
 }
+
+/********************************************* */
 
 const reverseList = node => {
     let current = node
@@ -58,38 +56,35 @@ const reverseList = node => {
     return current
 }
 
-const splitList = ll => {
+const splitAndReverseSecondHalf = ll => {
     let fast = ll
     let slow = ll
 
     while (fast.next !== null && fast.next.next !== null) {
         slow = slow.next
-            fast = fast.next.next
+        fast = fast.next.next
     }
-    console.log(slow.val)
 
     let oldNext = slow.next
     slow.next = null
-    console.log(oldNext)
-    console.log(ll)
     return reverseList(oldNext)
 }
 
-printList(splitList(list))
-printList(list)
-
-
-/* end playground */
 
 var reorderList = function (head) {
     let current = head
-    // const reversed = reverseList(current)
-    // printList(current)
+    let reverse = splitAndReverseSecondHalf(head)
 
-    // let oldNext = current.next
-    // current.next = e
+    while (reverse !== null) {
+        let oldNext = current.next
+        current.next = new ListNode(reverse.val)
+        reverse = reverse.next
+        current.next.next = oldNext
+        current = current.next.next
+    }
 
-
+    printList(head)
+    return head
 };
 
 
