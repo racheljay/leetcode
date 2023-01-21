@@ -3,30 +3,16 @@
  * @param {number} target
  * @return {number[]}
  */
- function twoSum(nums, target) {
-    const visited = {}
-    const cords = []
-    
-
-    for(i = 0; i < nums.length; i++) {
-        const item = nums[i]
-        const partner = target - item
-        
-        if (partner in visited) {
-            cords.push(visited[partner])
-            cords.push(i)
-            break
-            
+var twoSum = function(nums, target) {
+    const seen = {}
+    const indexes = []
+    for(let i = 0; i < nums.length; i++) {
+        const num = nums[i]
+        if(target - num in seen) {
+            indexes.push(seen[target - num], i)
         } else {
-             visited[item] = i
+            seen[num] = i
         }
-        
     }
-
-     
-        console.log(visited)
-        console.log(cords)
-
+    return indexes
 };
-
-twoSum([2,7,11,15], 9)
