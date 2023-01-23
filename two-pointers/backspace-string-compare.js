@@ -6,7 +6,7 @@
 
 /* 
 This is using the two pointers method
-TODO: solve again using stacks 
+There is another version of this problem in /stack
 */
 var backspaceCompare = function (s, t) {
     let sIndex = s.length - 1
